@@ -1,0 +1,16 @@
+﻿1) Create a new class, "ConsoleLogger", for the project
+2) Have it inherit the ILogger interface
+3) Implement the interface so that it handles the LogMsg method by writing the message to the console
+4) In the Program class, under the ComposeApp method, set the _logger field to a new instance of the ConsoleLogger
+*** Verify your project runs and produces the expected message in the console ***
+5) Add another class, "FileSystemLogger", to the project
+6) Have it inherit the ILogger
+7) Implement the interface so that it writes out the log message to to a file (you can hard code the location and file name, not important)
+8) Adjust your ComposeApp to now set the _logger field to a new instance of your FileSystemLogger
+*** Verify that your project runs and producse the expected log file ***
+9) Add an appSetting to the configuration file
+    a) key = "Logger"
+    b) value = "ConsoleLogger"
+10) Amend your code in the ComposeApp so that it retrieves the value of the appSetting and them uses it 
+    to determine which concrete instance of ILogger should be used (the console logger or the file system logger)
+*** Verify that you can run the program and it can use either logger based on what is in the App.config file ***
