@@ -8,9 +8,9 @@ using System.IO;
 
 namespace MyConsoleApp.LoggerClass
 {
-    class FileSystemLogger : ILogger
+    public class FileSystemLogger : ILogger
     {
-        void ILogger.LogMsg(string msg)
+        public void LogMsg(string msg)
         {
             StreamWriter sw = new StreamWriter("C:\\Users\\Kimba\\Documents\\Log.txt");
             sw.WriteLine(msg);            
