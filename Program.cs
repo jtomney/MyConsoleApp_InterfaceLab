@@ -1,9 +1,12 @@
 ﻿using MyConsoleApp.Interfaces;
+using MyConsoleApp.LoggerClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace MyConsoleApp
 {
@@ -20,7 +23,18 @@ namespace MyConsoleApp
 
         private static void ComposeApp()
         {
-            throw new NotImplementedException();
+            string loggerType = ConfigurationManager.AppSettings.Get("Logger");
+
+            if (loggerType == "ConsoleLogger")
+            {
+                ConsoleLogger logger = new ConsoleLogger();
+                _logger = logger;
+            }
+            else
+            {
+                FileSystemLogger logger = new FileSystemLogger();
+                _logger = logger;
+            }
         }
 
         private static void WaitToExit()
