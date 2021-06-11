@@ -43,16 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IArguments.cs" />
+    <Compile Include="Interfaces\ICommandLineArgsParser.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
-    <Compile Include="Interfaces\IUniqueFilename.cs" />
+    <Compile Include="Interfaces\IDciFilenameGenerator.cs" />
     <Compile Include="LoggerClass\ConsoleLogger.cs" />
     <Compile Include="LoggerClass\FileSystemLogger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UniqueFilenameClass\Arguments.cs" />
-    <Compile Include="UniqueFilenameClass\ArgumentsDto.cs" />
-    <Compile Include="UniqueFilenameClass\UniqueFilename.cs" />
+    <Compile Include="UniqueFilenameClass\CommandLineArgsParser.cs" />
+    <Compile Include="UniqueFilenameClass\ServerNameAppIdDto.cs" />
+    <Compile Include="UniqueFilenameClass\DciFilenameGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

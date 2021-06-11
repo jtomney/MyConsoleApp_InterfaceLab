@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyConsoleApp.UniqueFilenameClass
 {
-    public class ArgumentsDto
+    public class ServerNameAppIdDto
     {
         public string Servername { get; set; }
         public string AppId { get; set; }

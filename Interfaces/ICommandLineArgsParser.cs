@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace MyConsoleApp.Interfaces
 {
-    public interface IArguments
+    public interface ICommandLineArgsParser
     {
-        List<ArgumentsDto> ParseArguments(string[] args);
+        List<ServerNameAppIdDto> ParseCmdLineArgsToSrvNmAppIdDTOs(string[] args);
     }
 }

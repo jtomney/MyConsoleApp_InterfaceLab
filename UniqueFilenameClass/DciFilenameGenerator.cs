@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace MyConsoleApp.UniqueFilenameClass
 {
-    public class UniqueFilename : IUniqueFilename
+    public class DciFilenameGenerator : IDciFilenameGenerator
     {
         private readonly ILogger _logger;
-        public UniqueFilename (ILogger logger)
+        public DciFilenameGenerator (ILogger logger)
         {
             _logger = logger;            
         }
-        public void LogUniqueFilename(List<ArgumentsDto> args)
+        public void LogUniqueDciFilename(List<ServerNameAppIdDto> args)
         {
             foreach (var arg in args)
             {
-                string uniqueFilename = GenerateUniqueFilename(arg.Servername, arg.AppId);
+                string uniqueFilename = GenerateUniqueDciFilename(arg.Servername, arg.AppId);
                 _logger.LogMsg(uniqueFilename);
             }
         }
-        public string GenerateUniqueFilename(string serverName, string appId)
+        public string GenerateUniqueDciFilename(string serverName, string appId)
         {
             DateTime timestamp = DateTime.Now;
             string timestampStr = timestamp.ToString("yyyyMMddHHmmssffff");

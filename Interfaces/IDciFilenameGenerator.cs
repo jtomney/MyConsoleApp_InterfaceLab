@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MyConsoleApp.Interfaces
 {
-    public interface IUniqueFilename
+    public interface IDciFilenameGenerator
     {
-        void LogUniqueFilename(List<ArgumentsDto> args);
-        string GenerateUniqueFilename(string serverName, string appId);        
+        void LogUniqueDciFilename(List<ServerNameAppIdDto> args);
+        string GenerateUniqueDciFilename(string serverName, string appId);        
     }
 }

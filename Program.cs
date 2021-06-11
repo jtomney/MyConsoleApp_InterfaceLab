@@ -14,15 +14,15 @@ namespace MyConsoleApp
     public class Program
     {
         private static ILogger _logger;
-        private static IArguments _arguments;
-        private static IUniqueFilename _uniqueFilename;
+        private static ICommandLineArgsParser _arguments;
+        private static IDciFilenameGenerator _uniqueFilename;
 
         static void Main(string[] args)
         {
             ComposeApp();
             _logger.LogMsg("Kimball plugin initialized");
-            var argsList = _arguments.ParseArguments(args);
-            _uniqueFilename.LogUniqueFilename(argsList);   
+            var argsList = _arguments.ParseCmdLineArgsToSrvNmAppIdDTOs(args);
+            _uniqueFilename.LogUniqueDciFilename(argsList);   
             WaitToExit();
         }
 
@@ -41,10 +41,10 @@ namespace MyConsoleApp
                 _logger = logger;
             }
 
-            Arguments arguments = new Arguments();
-            UniqueFilename uniqueFilename = new UniqueFilename(_logger);
-
+            CommandLineArgsParser arguments = new CommandLineArgsParser();
             _arguments = arguments;
+
+            DciFilenameGenerator uniqueFilename = new DciFilenameGenerator(_logger);                       
             _uniqueFilename = uniqueFilename;
         }
 
