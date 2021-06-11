@@ -12,9 +12,18 @@ namespace MyConsoleApp.LoggerClass
     {
         public void LogMsg(string msg)
         {
-            StreamWriter sw = new StreamWriter("C:\\Users\\Kimba\\Documents\\Log.txt");
-            sw.WriteLine(msg);            
-            sw.Close();
+            if (File.Exists("C:\\Users\\Kimba\\Documents\\Log.txt"))
+            {
+                StreamWriter sw = File.AppendText("C:\\Users\\Kimba\\Documents\\Log.txt");
+                sw.WriteLine(msg);
+                sw.Close();
+            }
+            else
+            {
+                StreamWriter sw = new StreamWriter("C:\\Users\\Kimba\\Documents\\Log.txt");
+                sw.WriteLine(msg);
+                sw.Close();
+            }            
         }
     }
 }

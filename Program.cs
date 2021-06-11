@@ -7,17 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Collections.Specialized;
+using MyConsoleApp.UniqueFilenameClass;
 
 namespace MyConsoleApp
 {
     public class Program
     {
         private static ILogger _logger;
+        private static IArguments _arguments;
+        private static IUniqueFilename _uniqueFilename;
 
         static void Main(string[] args)
         {
             ComposeApp();
-            _logger.LogMsg("Hello World");
+            _logger.LogMsg("Kimball plugin initialized");
+            var argsList = _arguments.ParseArguments(args);
+            _uniqueFilename.LogUniqueFilename(argsList);   
             WaitToExit();
         }
 
@@ -35,6 +40,12 @@ namespace MyConsoleApp
                 FileSystemLogger logger = new FileSystemLogger();
                 _logger = logger;
             }
+
+            Arguments arguments = new Arguments();
+            UniqueFilename uniqueFilename = new UniqueFilename(_logger);
+
+            _arguments = arguments;
+            _uniqueFilename = uniqueFilename;
         }
 
         private static void WaitToExit()
