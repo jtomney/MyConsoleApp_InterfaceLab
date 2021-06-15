@@ -10,9 +10,11 @@ namespace MyConsoleApp.UniqueFilenameClass
     public class DciFilenameGenerator : IDciFilenameGenerator
     {
         private readonly ILogger _logger;
-        public DciFilenameGenerator (ILogger logger)
+        private readonly IOutputFileGenerator _outputFile;
+        public DciFilenameGenerator (ILogger logger, IOutputFileGenerator outputFile)
         {
-            _logger = logger;            
+            _logger = logger;
+            _outputFile = outputFile;
         }
         public void LogUniqueDciFilename(List<ServerNameAppIdDto> args)
         {
@@ -20,6 +22,7 @@ namespace MyConsoleApp.UniqueFilenameClass
             {
                 string uniqueFilename = GenerateUniqueDciFilename(arg.Servername, arg.AppId);
                 _logger.LogMsg(uniqueFilename);
+                _outputFile.WriteUniqueDciFilenameToFile(uniqueFilename);
             }
         }
         public string GenerateUniqueDciFilename(string serverName, string appId)

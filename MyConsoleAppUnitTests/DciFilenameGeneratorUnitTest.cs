@@ -1,4 +1,5 @@
 using MyConsoleApp.Interfaces;
+using MyConsoleApp.OutputFileClass;
 using MyConsoleApp.UniqueFilenameClass;
 using MyConsoleAppUnitTests.Fake;
 using System;
@@ -21,7 +22,9 @@ namespace MyConsoleAppUnitTests
             string inputAppID = "JT2";
             string expectedStartWith = "S3B4E02JT2";
             ILogger logger = new FakeLogger();
-            IDciFilenameGenerator sut = new DciFilenameGenerator(logger);
+            IOutputFilenameGenerator outputFilename = new OutputFilenameGenerator();
+            IOutputFileGenerator outputFile = new OutputFileGenerator(outputFilename);
+            IDciFilenameGenerator sut = new DciFilenameGenerator(logger, outputFile);
 
             //Act
             string result = sut.GenerateUniqueDciFilename(inputServerName, inputAppID);
@@ -47,7 +50,9 @@ namespace MyConsoleAppUnitTests
         {
             //Arrange
             ILogger logger = new FakeLogger();
-            IDciFilenameGenerator sut = new DciFilenameGenerator(logger);
+            IOutputFilenameGenerator outputFilename = new OutputFilenameGenerator();
+            IOutputFileGenerator outputFile = new OutputFileGenerator(outputFilename);
+            IDciFilenameGenerator sut = new DciFilenameGenerator(logger, outputFile);
 
             //Act
             var result = sut.GenerateUniqueDciFilename(inputServerName, inputAppID);
