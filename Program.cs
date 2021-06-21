@@ -8,14 +8,17 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.Collections.Specialized;
 using MyConsoleApp.UniqueFilenameClass;
+using MyConsoleApp.OutputFileClass;
 
 namespace MyConsoleApp
 {
     public class Program
     {
         private static ILogger _logger;
-        private static ICommandLineArgsParser _arguments;
+        private static ICommandLineArgsParser _arguments;        
         private static IDciFilenameGenerator _uniqueFilename;
+        private static IOutputFilenameGenerator _outputFilename;
+        private static IOutputFileGenerator _outputFile;
 
         static void Main(string[] args)
         {
@@ -44,7 +47,13 @@ namespace MyConsoleApp
             CommandLineArgsParser arguments = new CommandLineArgsParser();
             _arguments = arguments;
 
-            DciFilenameGenerator uniqueFilename = new DciFilenameGenerator(_logger);                       
+            OutputFilenameGenerator outputFilename = new OutputFilenameGenerator();
+            _outputFilename = outputFilename;
+
+            OutputFileGenerator outputFile = new OutputFileGenerator(_outputFilename);
+            _outputFile = outputFile;
+
+            DciFilenameGenerator uniqueFilename = new DciFilenameGenerator(_logger, _outputFile);                       
             _uniqueFilename = uniqueFilename;
         }
 

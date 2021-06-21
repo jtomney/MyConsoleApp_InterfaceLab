@@ -12,15 +12,15 @@ namespace MyConsoleApp.LoggerClass
     {
         public void LogMsg(string msg)
         {
-            if (File.Exists("C:\\Users\\Kimba\\Documents\\Log.txt"))
+            if (File.Exists("Log.txt"))
             {
-                StreamWriter sw = File.AppendText("C:\\Users\\Kimba\\Documents\\Log.txt");
+                StreamWriter sw = File.AppendText("Log.txt");
                 sw.WriteLine(msg);
                 sw.Close();
             }
             else
             {
-                StreamWriter sw = new StreamWriter("C:\\Users\\Kimba\\Documents\\Log.txt");
+                StreamWriter sw = new StreamWriter("Log.txt");
                 sw.WriteLine(msg);
                 sw.Close();
             }            
